@@ -1,5 +1,5 @@
 const express = require('express');
-const res = require('express/lib/response');
+
 const { sayHello } = require('./lib/strings');
 const { uppercase } = require('./lib/strings');
 const { lowercase } = require('./lib/strings');
@@ -7,6 +7,8 @@ const { firstCharacter } = require('./lib/strings');
 const { firstCharacters } = require('./lib/strings');
 
 const app = express();
+
+// strings.js
 
 app.get('/strings/hello/:string', (req, res) => {
   res.status(200).json({ result: sayHello(req.params.string) });
@@ -29,6 +31,21 @@ app.get('/strings/first-characters/:string', (req, res) => {
     Which is replaced with 'chars' here. */
   } else {
     res.status(200).json({ result: firstCharacter(req.params.string) });
+  }
+});
+
+// numbers.js
+
+const { add } = require('./lib/numbers');
+
+app.get('/numbers/add/:a/and/:b', (req, res) => {
+  const a = parseInt(req.params.a);
+  const b = parseInt(req.params.b);
+
+  if (isNaN(a) && isNaN(b)) {
+    res.status(400).json({ error: 'Parameters must be valid numbers.' });
+  } else {
+    res.status(200).json({ result: add(a, b) });
   }
 });
 
