@@ -8,6 +8,9 @@ const { firstCharacters } = require('./lib/strings');
 
 const app = express();
 
+app.use(express.json()); // JSON parsing middleware
+// Access JSON data sent to your application by referencing req.body()
+
 // strings.js
 
 app.get('/strings/hello/:string', (req, res) => {
@@ -37,6 +40,7 @@ app.get('/strings/first-characters/:string', (req, res) => {
 // numbers.js
 
 const { add } = require('./lib/numbers');
+const { subtract } = require('./lib/numbers');
 
 app.get('/numbers/add/:a/and/:b', (req, res) => {
   const a = parseInt(req.params.a);
@@ -46,6 +50,17 @@ app.get('/numbers/add/:a/and/:b', (req, res) => {
     res.status(400).json({ error: 'Parameters must be valid numbers.' });
   } else {
     res.status(200).json({ result: add(a, b) });
+  }
+});
+
+app.get('/numbers/subtract/:a/from/:b', (req, res) => {
+  const a = parseInt(req.params.a);
+  const b = parseInt(req.params.b);
+
+  if (isNaN(a) || isNaN(b)) {
+    res.status(400).json({ error: 'Parameters must be valid numbers.' });
+  } else {
+    res.status(200).json({ result: subtract(-a, -b) });
   }
 });
 
