@@ -1,10 +1,12 @@
 const express = require('express');
 
-const { sayHello } = require('./lib/strings');
-const { uppercase } = require('./lib/strings');
-const { lowercase } = require('./lib/strings');
-const { firstCharacter } = require('./lib/strings');
-const { firstCharacters } = require('./lib/strings');
+const {
+  sayHello,
+  uppercase,
+  lowercase,
+  firstCharacter,
+  firstCharacters,
+} = require('./lib/strings');
 
 const app = express();
 
@@ -39,8 +41,7 @@ app.get('/strings/first-characters/:string', (req, res) => {
 
 // numbers.js
 
-const { add } = require('./lib/numbers');
-const { subtract } = require('./lib/numbers');
+const { add, subtract, multiply, divide, remainder } = require('./lib/numbers');
 
 app.get('/numbers/add/:a/and/:b', (req, res) => {
   const a = parseInt(req.params.a);
@@ -61,6 +62,19 @@ app.get('/numbers/subtract/:a/from/:b', (req, res) => {
     res.status(400).json({ error: 'Parameters must be valid numbers.' });
   } else {
     res.status(200).json({ result: subtract(-a, -b) });
+  }
+});
+
+app.post('/numbers/multiply/', (req, res) => {
+  const { a } = req.body;
+  const { b } = req.body;
+
+  if (!a || !b) {
+    res.status(400).json({ error: 'Parameters "a" and "b" are required.' });
+  } else if (isNaN(a) || isNaN(b)) {
+    res.status(400).json({ error: 'Parameters "a" and "b" must be valid numbers.' });
+  } else {
+    res.status(200).json({ result: multiply(a, b) });
   }
 });
 
