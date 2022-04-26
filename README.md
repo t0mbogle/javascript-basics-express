@@ -1,38 +1,16 @@
 # JavaScript Basics in Express
 
-## Getting started
+This project creates a Web API using Express that exposes the JavaScript fucntions from the javascript-basics repository.
+Postman API has been used throughout to ensure the HTTP requests and responses worked in the desired way.
 
-Ensure your Visual Studio Code application is up to date, and that you have the [ESLint extension](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) installed and enabled.
+## Authors & Ackowledgements
 
-Run the commands below inside your `Projects` folder.
+This is a project from the Software Engineering course by Manchester Codes.
 
-```bash
-git clone git@github.com:MCRcodes/javascript-basics-express.git
-cd your-project-folder-name
-npm install
-```
+## Running tests and setting up 
 
-## Copy over your JavaScript Basics code
+You can run tests with the `npm test` command. You can set up the server with `npm start` and copy the localhost URI into Postman to see the responses.
 
-:rotating_light: **Important!**
+## Project Status
 
-This exercise makes use of your previous `javascript-basics` code. Copy the files from that project's `src/` folder into a new `lib/` directory in this repository's `src` directory. You should end up with the following file structure in this project:
-
-```
-src
-├── app.js
-└── lib
-    ├── arrays.js
-    ├── booleans.js
-    ├── numbers.js
-    ├── objects.js
-    └── strings.js
-```
-
-## Running tests
-
-You can run tests with the `npm test` command.
-
-## Remember: READMEs are important!
-
-When you're finished, be sure to rewrite this one so it's more specific to your project.
+Still recieving updates to arrays, booleans sections and any refactoring along the way. :)
