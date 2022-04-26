@@ -148,4 +148,29 @@ app.get('/booleans/:string/starts-with/:character', (req, res) => {
   }
 });
 
+// ------ arrays.js
+
+const { getNthElement, arrayToCSVString, addToArray2 } = require('./lib/arrays');
+
+app.post('/arrays/element-at-index/:index', (req, res) => {
+  const { index } = req.params; // route paramater (URI)
+  const { array } = req.body; // key value pairs submitted by the user, by default undefined
+
+  res.status(200).json({ result: getNthElement(index, array) });
+});
+
+app.post('/arrays/to-string/', (req, res) => {
+  const { array } = req.body;
+  // one param that the user will provide, therefore req.body
+
+  res.status(200).json({ result: arrayToCSVString(array) });
+});
+
+app.post('/arrays/append/', (req, res) => {
+  const { array } = req.body;
+  const { value } = req.body;
+
+  res.status(200).json({ result: addToArray2(value, array) });
+});
+
 module.exports = app;
