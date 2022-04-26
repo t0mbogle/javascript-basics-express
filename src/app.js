@@ -142,7 +142,7 @@ app.get('/booleans/:string/starts-with/:character', (req, res) => {
   if (character.length > 1) {
     res.status(400).json({ error: 'Parameter "character" must be a single character.' });
   } else if (string[0] !== character) {
-    res.status(200).json({ result: false });
+    res.status(200).json({ result: startsWith(string, character) });
   } else {
     res.status(200).json({ result: true });
   }
