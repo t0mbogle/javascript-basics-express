@@ -150,7 +150,13 @@ app.get('/booleans/:string/starts-with/:character', (req, res) => {
 
 // ------ arrays.js
 
-const { getNthElement, arrayToCSVString, addToArray2 } = require('./lib/arrays');
+const {
+  getNthElement,
+  arrayToCSVString,
+  addToArray2,
+  elementsStartingWithAVowel,
+  removeNthElement2,
+} = require('./lib/arrays');
 
 app.post('/arrays/element-at-index/:index', (req, res) => {
   const { index } = req.params; // route paramater (URI)
@@ -171,6 +177,19 @@ app.post('/arrays/append/', (req, res) => {
   const { value } = req.body;
 
   res.status(200).json({ result: addToArray2(value, array) });
+});
+
+app.post('/arrays/starts-with-vowel', (req, res) => {
+  const { array } = req.body;
+
+  res.status(200).json({ result: elementsStartingWithAVowel(array) });
+});
+
+app.post('/arrays/remove-element', (req, res) => {
+  const { index } = req.query;
+  const { array } = req.body;
+
+  res.status(200).json({ result: removeNthElement2(array, index) });
 });
 
 module.exports = app;

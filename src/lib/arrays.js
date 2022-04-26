@@ -37,7 +37,7 @@ const reverseWordsInArray = strings => {
     word
       .split('')
       .reverse()
-      .join('')
+      .join(''),
   );
   return reverseWords;
 };
@@ -46,10 +46,18 @@ const onlyEven = numbers => {
   return numbers.filter(numbers => numbers % 2 === 0);
 };
 
-const removeNthElement2 = (index, array) => {
-  let removeNth = array.slice(0, index).concat(array.slice(index + 1, array.length));
-  return removeNth;
-};
+// const removeNthElement2 = (index = 0, array) => {
+//   const removeNth = array.slice(0, index).concat(array.slice(index + 1, array.length));
+//   return removeNth;
+// };
+
+const removeNthElement2 = (array, index = 0) => {
+  const element = array[index];
+  const newArr = array.filter(word => {
+    return word !== element;
+  });
+  return newArr;
+}; // New function for removeNthElement2, to pass in express API module.
 
 const elementsStartingWithAVowel = strings => {
   return strings.filter(strings => /^[aeiou]/i.test(strings));
@@ -60,14 +68,11 @@ const removeSpaces = string => {
 };
 
 const sumNumbers = numbers => {
-  return numbers.reduce(
-    (previousValue, currentValue) => previousValue + currentValue, 0);
+  return numbers.reduce((previousValue, currentValue) => previousValue + currentValue, 0);
 };
 
 const sortByLastLetter = strings => {
-  return strings.sort(
-    (a, b) => a.charCodeAt(a.length - 1) - b.charCodeAt(b.length - 1)
-  );
+  return strings.sort((a, b) => a.charCodeAt(a.length - 1) - b.charCodeAt(b.length - 1));
 };
 
 module.exports = {
@@ -85,5 +90,5 @@ module.exports = {
   elementsStartingWithAVowel,
   removeSpaces,
   sumNumbers,
-  sortByLastLetter
+  sortByLastLetter,
 };
