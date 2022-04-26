@@ -13,7 +13,7 @@ const app = express();
 app.use(express.json()); // JSON parsing middleware
 // Access JSON data sent to your application by referencing req.body()
 
-// strings.js
+// ------ strings.js
 
 app.get('/strings/hello/:string', (req, res) => {
   res.status(200).json({ result: sayHello(req.params.string) });
@@ -39,7 +39,7 @@ app.get('/strings/first-characters/:string', (req, res) => {
   }
 });
 
-// numbers.js
+// ------ numebrs.js
 
 const { add, subtract, multiply, divide, remainder } = require('./lib/numbers');
 
@@ -107,6 +107,16 @@ app.post('/numbers/remainder/', (req, res) => {
   } else {
     res.status(200).json({ result: remainder(a, b) });
   }
+});
+
+// ------ booleans.js
+
+const { negate } = require('./lib/booleans');
+
+app.post('/booleans/negate/', (req, res) => {
+  const { value } = req.body;
+
+  res.status(200).json({ result: negate(value) });
 });
 
 module.exports = app;
