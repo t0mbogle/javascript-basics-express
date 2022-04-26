@@ -111,12 +111,28 @@ app.post('/numbers/remainder/', (req, res) => {
 
 // ------ booleans.js
 
-const { negate } = require('./lib/booleans');
+const { negate, truthiness, isOdd } = require('./lib/booleans');
 
 app.post('/booleans/negate/', (req, res) => {
   const { value } = req.body;
 
   res.status(200).json({ result: negate(value) });
+});
+
+app.post('/booleans/truthiness/', (req, res) => {
+  const { value } = req.body;
+
+  res.status(200).json({ result: truthiness(value) });
+});
+
+app.get('/booleans/is-odd/:number', (req, res) => {
+  const { number } = req.params;
+
+  if (isNaN(number)) {
+    res.status(400).json({ error: 'Parameter must be a number.' });
+  } else {
+    res.status(200).json({ result: isOdd(req.params.number) });
+  }
 });
 
 module.exports = app;
