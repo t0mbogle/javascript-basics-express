@@ -13,4 +13,4 @@ You can run tests with the `npm test` command. You can set up the server with `n
 
 ## Project Status
 
-Still recieving updates to arrays, booleans sections and any refactoring along the way. :)
+Small changes and refactoring may be done in the future :)
