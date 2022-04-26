@@ -111,7 +111,7 @@ app.post('/numbers/remainder/', (req, res) => {
 
 // ------ booleans.js
 
-const { negate, truthiness, isOdd } = require('./lib/booleans');
+const { negate, truthiness, isOdd, startsWith } = require('./lib/booleans');
 
 app.post('/booleans/negate/', (req, res) => {
   const { value } = req.body;
@@ -132,6 +132,19 @@ app.get('/booleans/is-odd/:number', (req, res) => {
     res.status(400).json({ error: 'Parameter must be a number.' });
   } else {
     res.status(200).json({ result: isOdd(req.params.number) });
+  }
+});
+
+app.get('/booleans/:string/starts-with/:character', (req, res) => {
+  const { character } = req.params;
+  const { string } = req.params;
+
+  if (character.length > 1) {
+    res.status(400).json({ error: 'Parameter "character" must be a single character.' });
+  } else if (string[0] !== character) {
+    res.status(200).json({ result: false });
+  } else {
+    res.status(200).json({ result: true });
   }
 });
 
